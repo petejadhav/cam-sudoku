@@ -12,6 +12,7 @@
 ### Data-Set Creation
 * Image Downloader
 * Image Annotation GUI
+* Image Augmentation
 
 ### CNN Model Data Flow
 * Grid Cell creation
