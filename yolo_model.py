@@ -32,5 +32,5 @@ model.fit(train_data, train_labels,
           batch_size=batch_size,
           validation_data=(validation_data, validation_labels))
 
-model_name = "yolo_model_"+ time.strftime("%Y-%m-%d-%H%M") +".h5"
+model_name = "model_"+ time.strftime("%Y-%m-%d-%H%M") +".h5"
 model.save_weights("models/"+model_name)
