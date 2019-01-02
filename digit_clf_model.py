@@ -1,7 +1,7 @@
 import numpy as np
 import pandas as pd
+import time
 
-import tensorflow as tf
 mnist = pd.read_csv("../input/train.csv")
 mnist.head()
 
@@ -66,7 +66,9 @@ x_test = np.reshape(x_test,(28000,1,28,28))
 x_test.shape
 
 predictions = model.predict(x_test)
+
 import matplotlib.pyplot as plt
+
 plt.figure(figsize=(10,10))
 for i in range(25):
     plt.subplot(5,5,i+1)
@@ -83,13 +85,16 @@ for i in range(25):
     plt.xlabel("{} ".format(predicted_label),
                                   color='green')
 
-f=open("submissions.csv","w")
-# Write headers
-f.write("ImageId,Label\n")
-for key,p in enumerate(predictions):
-    i = key+1
-    line = str(i)+","+str(np.argmax(p))+"\n"
-    f.write(line)
-f.close()
-sub = pd.read_csv("submissions.csv")
-sub.head()
+model_name = "digit_clf_model_"+ time.strftime("%Y-%m-%d-%H%M") +".h5"
+model.save_weights("models/"+model_name)
+
+# f=open("submissions.csv","w")
+# # Write headers
+# f.write("ImageId,Label\n")
+# for key,p in enumerate(predictions):
+#     i = key+1
+#     line = str(i)+","+str(np.argmax(p))+"\n"
+#     f.write(line)
+# f.close()
+# sub = pd.read_csv("submissions.csv")
+# sub.head()
